@@ -30,17 +30,32 @@ public class roller {
 
 
     //Generates the stat block but it re-rolls the two lowest stats
-    //TO ADD see if we want to replace the stat overall or just take the highest of the rolls
     public ArrayList generateStatBlockRLow2(){
         ArrayList<Integer> statBlock = generateStatBlock();
 
+        int min1 = Collections.min(statBlock);
         statBlock.remove(Collections.min(statBlock));
+
+        int min2 = Collections.min(statBlock);
         statBlock.remove(Collections.min(statBlock));
 
+        int reroll1 = numGen.nextInt(6) + 1;
+        int reroll2 = numGen.nextInt(6) + 1;
 
+        if(min1 > reroll1){
+            statBlock.add(min1);
+        } else {
+            statBlock.add(reroll1);
+        }
 
-        statBlock.add(numGen.nextInt(6)+1);
-        statBlock.add(numGen.nextInt(6)+1);
+        if(min2 > reroll2){
+            statBlock.add(min2);
+        } else {
+            statBlock.add(reroll2);
+        }
+
+        //statBlock.add(numGen.nextInt(6)+1);
+        //statBlock.add(numGen.nextInt(6)+1);
 
 
         return statBlock;

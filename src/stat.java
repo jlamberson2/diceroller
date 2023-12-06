@@ -1,7 +1,7 @@
 import java.util.*;
 public class stat {
 
-    ArrayList<Integer> statBlock;
+    private ArrayList<Integer> statBlock;
 
     public stat(){
         statBlock = new ArrayList<>();
