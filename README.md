@@ -11,7 +11,8 @@ to make this more accessable for people
 
 ## Installation
 
-
+Make sure Java is installed onto the computer where you wish to use the program. Download the "diceroller.jar" file inside the 
+/diceroller/out/artifacts folder. Run the jar file and the program will launch
 
 ## Usage
 
