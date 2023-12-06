@@ -1,0 +1,26 @@
+Start New Stat Block: 
+Rolls: [6, 5, 5, 5]
+Total: 16
+Assigned to: Strength
+
+Rolls: [6, 6, 5, 4]
+Total: 17
+Assigned to: Dexterity
+
+Rolls: [6, 6, 5, 3]
+Total: 17
+Assigned to: Constitution
+
+Rolls: [5, 4, 3, 2]
+Total: 12
+Assigned to: Intelligence
+
+Rolls: [5, 4, 3, 3]
+Total: 12
+Assigned to: Wisdom
+
+Rolls: [6, 4, 4, 2]
+Total: 14
+Assigned to: Charisma
+
+
