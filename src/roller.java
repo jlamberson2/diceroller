@@ -29,7 +29,7 @@ public class roller {
     }
 
 
-    //Generates the stat block but it re-rolls the two lowest stats
+    //Generates the stat block but it re-rolls the two lowest stats and takes the highest
     public ArrayList generateStatBlockRLow2(){
         ArrayList<Integer> statBlock = generateStatBlock();
 
