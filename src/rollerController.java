@@ -1,15 +1,29 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class rollerController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
+public class rollerController implements Initializable {
+
+    roller statRoller = new roller();
+    stat statBlock1;
+    stat statBlock2;
+    stat statBlock3;
+    stat statBlock4;
+    stat statBlock5;
+    stat statBlock6;
+
+    private String[] statChoices = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"};
 
     //Standard assignment for all the FXML objects
+    @FXML
+    private Label currentRollMethod;
+
     @FXML
     private Button exportToFile;
 
@@ -26,22 +40,22 @@ public class rollerController {
     private Button standardRoll;
 
     @FXML
-    private ChoiceBox<?> statAssign1;
+    private ChoiceBox<String> statAssign1;
 
     @FXML
-    private ChoiceBox<?> statAssign2;
+    private ChoiceBox<String> statAssign2;
 
     @FXML
-    private ChoiceBox<?> statAssign3;
+    private ChoiceBox<String> statAssign3;
 
     @FXML
-    private ChoiceBox<?> statAssign4;
+    private ChoiceBox<String> statAssign4;
 
     @FXML
-    private ChoiceBox<?> statAssign5;
+    private ChoiceBox<String> statAssign5;
 
     @FXML
-    private ChoiceBox<?> statAssign6;
+    private ChoiceBox<String> statAssign6;
 
     @FXML
     private TextArea statText1;
@@ -65,31 +79,93 @@ public class rollerController {
     //Action for the standard array button
     @FXML
     void defaultGeneration(ActionEvent event) {
-
+        currentRollMethod.setText("Standard Array");
+        defaultArray();
+        refreshStatText();
     }
 
     //action for the reroll lowest 2 button
     @FXML
     void rollRerollLow2(ActionEvent event) {
-
+        currentRollMethod.setText("Reroll Lowest 2");
     }
 
     //action for the standard roll (4D6) button
     @FXML
     void rollStandardStats(ActionEvent event) {
+        currentRollMethod.setText("Standard 4D6 Roll");
+
+        statBlock1 = new stat(statRoller.generateStatBlock());
+        statBlock2 = new stat(statRoller.generateStatBlock());
+        statBlock3 = new stat(statRoller.generateStatBlock());
+        statBlock4 = new stat(statRoller.generateStatBlock());
+        statBlock5 = new stat(statRoller.generateStatBlock());
+        statBlock6 = new stat(statRoller.generateStatBlock());
+
+        refreshStatText();
 
     }
 
     //action for the reroll 1s button
     @FXML
     void rollStatsRe1s(ActionEvent event) {
+        currentRollMethod.setText("Reroll 1s");
 
+        statBlock1 = new stat(statRoller.generateStatBlockR1());
+        statBlock2 = new stat(statRoller.generateStatBlockR1());
+        statBlock3 = new stat(statRoller.generateStatBlockR1());
+        statBlock4 = new stat(statRoller.generateStatBlockR1());
+        statBlock5 = new stat(statRoller.generateStatBlockR1());
+        statBlock6 = new stat(statRoller.generateStatBlockR1());
+
+        refreshStatText();
     }
 
     //action for the export stats to file button
     @FXML
     void saveToFile(ActionEvent event) {
-
+        currentRollMethod.setText("Saving to file");
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        statAssign1.getItems().addAll(statChoices);
+        statAssign2.getItems().addAll(statChoices);
+        statAssign3.getItems().addAll(statChoices);
+        statAssign4.getItems().addAll(statChoices);
+        statAssign5.getItems().addAll(statChoices);
+        statAssign6.getItems().addAll(statChoices);
+
+        statText1.setEditable(false);
+        statText2.setEditable(false);
+        statText3.setEditable(false);
+        statText4.setEditable(false);
+        statText5.setEditable(false);
+        statText6.setEditable(false);
+
+        defaultArray();
+
+        refreshStatText();
+    }
+
+    //used to set the stat blocks to the standard array for stats
+    private void defaultArray(){
+        statBlock1 = new stat(5, 5, 5, 1);
+        statBlock2 = new stat(5, 5, 4, 1);
+        statBlock3 = new stat(5, 5, 3, 1);
+        statBlock4 = new stat(5, 5, 2, 1);
+        statBlock5 = new stat(5, 3, 2, 1);
+        statBlock6 = new stat(5, 2, 1, 1);
+    }
+
+
+    //Refreshes the text boxes to update to display the new stats that were rolled
+    private void refreshStatText(){
+        statText1.setText(statBlock1.toString());
+        statText2.setText(statBlock2.toString());
+        statText3.setText(statBlock3.toString());
+        statText4.setText(statBlock4.toString());
+        statText5.setText(statBlock5.toString());
+        statText6.setText(statBlock6.toString());
+    }
 }

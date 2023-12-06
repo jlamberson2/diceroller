@@ -12,6 +12,15 @@ public class stat {
         statBlock = manualImport;
     }
 
+    //Allows the manual assignment of rolls
+    public stat(int a, int b, int c, int d){
+        statBlock = new ArrayList<Integer>();
+        statBlock.add(a);
+        statBlock.add(b);
+        statBlock.add(c);
+        statBlock.add(d);
+    }
+
     //adds a roll to the block
     public void addToBlock(int stat){
         statBlock.add(stat);
@@ -47,5 +56,12 @@ public class stat {
     //Exports the total array of the stat block
     public ArrayList exportBlock(){
         return statBlock;
+    }
+
+    //toString method that outputs the stat
+    public String toString(){
+        Collections.sort(statBlock, Collections.reverseOrder());
+        String statString = "Rolls: \n" +  statBlock.toString() + "\nTotal: " + totalStat();
+        return statString;
     }
 }

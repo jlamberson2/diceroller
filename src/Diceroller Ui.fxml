@@ -2,18 +2,37 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.Pane?>
-
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rollerController">
    <children>
-      <TextArea id="statText1" fx:id="statText1" layoutX="39.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextArea id="statText4" fx:id="statText4" layoutX="39.0" layoutY="281.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextArea id="statText2" fx:id="statText2" layoutX="331.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextArea id="statText5" fx:id="statText5" layoutX="331.0" layoutY="281.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextArea id="statText3" fx:id="statText3" layoutX="635.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextArea id="statText6" fx:id="statText6" layoutX="635.0" layoutY="281.0" prefHeight="200.0" prefWidth="200.0" />
+      <TextArea id="statText1" fx:id="statText1" layoutX="39.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0">
+         <font>
+            <Font size="24.0" />
+         </font></TextArea>
+      <TextArea id="statText4" fx:id="statText4" layoutX="39.0" layoutY="281.0" prefHeight="200.0" prefWidth="200.0">
+         <font>
+            <Font size="24.0" />
+         </font></TextArea>
+      <TextArea id="statText2" fx:id="statText2" layoutX="331.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0">
+         <font>
+            <Font size="24.0" />
+         </font></TextArea>
+      <TextArea id="statText5" fx:id="statText5" layoutX="331.0" layoutY="281.0" prefHeight="200.0" prefWidth="200.0">
+         <font>
+            <Font size="24.0" />
+         </font></TextArea>
+      <TextArea id="statText3" fx:id="statText3" layoutX="635.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0">
+         <font>
+            <Font size="24.0" />
+         </font></TextArea>
+      <TextArea id="statText6" fx:id="statText6" layoutX="635.0" layoutY="281.0" prefHeight="200.0" prefWidth="200.0">
+         <font>
+            <Font size="24.0" />
+         </font></TextArea>
       <Button id="standardRoll" fx:id="standardRoll" layoutX="891.0" layoutY="35.0" mnemonicParsing="false" onAction="#rollStandardStats" prefHeight="25.0" prefWidth="218.0" text="Standard Roll (4D6)" />
       <Button id="reroll1s" fx:id="reroll1s" layoutX="891.0" layoutY="60.0" mnemonicParsing="false" onAction="#rollStatsRe1s" prefHeight="25.0" prefWidth="218.0" text="Reroll 1s" />
       <Button id="rerollLow2" fx:id="rerollLow2" layoutX="891.0" layoutY="85.0" mnemonicParsing="false" onAction="#rollRerollLow2" prefHeight="25.0" prefWidth="218.0" text="Reroll Lowest 2" />
@@ -25,5 +44,15 @@
       <ChoiceBox id="statAssign5" fx:id="statAssign5" layoutX="331.0" layoutY="481.0" prefHeight="25.0" prefWidth="200.0" />
       <ChoiceBox id="statAssign6" fx:id="statAssign6" layoutX="635.0" layoutY="481.0" prefHeight="25.0" prefWidth="200.0" />
       <Button id="exportToFile" fx:id="exportToFile" layoutX="891.0" layoutY="157.0" mnemonicParsing="false" onAction="#saveToFile" prefHeight="25.0" prefWidth="218.0" text="Export Stats to File" />
+      <Label layoutX="891.0" layoutY="236.0" prefHeight="40.0" prefWidth="264.0" text="Current Roll Method:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="currentRollMethod" layoutX="891.0" layoutY="304.0" prefHeight="40.0" prefWidth="264.0" text="Standard Array">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
