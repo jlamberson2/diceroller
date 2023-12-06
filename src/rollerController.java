@@ -3,7 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
+import java.io.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -88,6 +88,16 @@ public class rollerController implements Initializable {
     @FXML
     void rollRerollLow2(ActionEvent event) {
         currentRollMethod.setText("Reroll Lowest 2");
+
+        statBlock1 = new stat(statRoller.generateStatBlockRLow2());
+        statBlock2 = new stat(statRoller.generateStatBlockRLow2());
+        statBlock3 = new stat(statRoller.generateStatBlockRLow2());
+        statBlock4 = new stat(statRoller.generateStatBlockRLow2());
+        statBlock5 = new stat(statRoller.generateStatBlockRLow2());
+        statBlock6 = new stat(statRoller.generateStatBlockRLow2());
+
+        refreshStatText();
+
     }
 
     //action for the standard roll (4D6) button
@@ -123,8 +133,10 @@ public class rollerController implements Initializable {
 
     //action for the export stats to file button
     @FXML
-    void saveToFile(ActionEvent event) {
+    void saveToFile(ActionEvent event) throws IOException {
         currentRollMethod.setText("Saving to file");
+
+        saveToFile();
     }
 
     @Override
@@ -145,7 +157,16 @@ public class rollerController implements Initializable {
 
         defaultArray();
 
+        statAssign1.setValue("Strength");
+        statAssign2.setValue("Dexterity");
+        statAssign3.setValue("Constitution");
+        statAssign4.setValue("Intelligence");
+        statAssign5.setValue("Wisdom");
+        statAssign6.setValue("Charisma");
+
         refreshStatText();
+
+
     }
 
     //used to set the stat blocks to the standard array for stats
@@ -167,5 +188,29 @@ public class rollerController implements Initializable {
         statText4.setText(statBlock4.toString());
         statText5.setText(statBlock5.toString());
         statText6.setText(statBlock6.toString());
+    }
+
+    private void saveToFile() throws IOException {
+        try {
+            File statsFile = new File("Stats Generated.txt");
+            if(statsFile.createNewFile()){
+                System.out.println("File created: " + statsFile.getName());
+            } else System.out.println("File already exists");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+        String textOutput = "Start New Stat Block: \n" + statBlock1.toString() + "\nAssigned to: " + statAssign1.getValue() + "\n\n" +
+                statBlock2.toString() + "\nAssigned to: " + statAssign2.getValue() + "\n\n" +
+                statBlock3.toString() + "\nAssigned to: " + statAssign3.getValue() + "\n\n" +
+                statBlock4.toString() + "\nAssigned to: " + statAssign4.getValue() + "\n\n" +
+                statBlock5.toString() + "\nAssigned to: " + statAssign5.getValue() + "\n\n" +
+                statBlock6.toString() + "\nAssigned to: " + statAssign6.getValue() + "\n\n\n";
+
+        FileWriter outputWriter = new FileWriter("Stats Generated.txt", true);
+        outputWriter.write(textOutput);
+        outputWriter.close();
     }
 }

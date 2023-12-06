@@ -61,7 +61,7 @@ public class stat {
     //toString method that outputs the stat
     public String toString(){
         Collections.sort(statBlock, Collections.reverseOrder());
-        String statString = "Rolls: \n" +  statBlock.toString() + "\nTotal: " + totalStat();
+        String statString = "Rolls: " +  statBlock.toString() + "\nTotal: " + totalStat();
         return statString;
     }
 }
