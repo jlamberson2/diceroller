@@ -134,6 +134,8 @@ public class rollerController implements Initializable {
     //action for the export stats to file button
     @FXML
     void saveToFile(ActionEvent event) throws IOException {
+        //String temp = currentRollMethod.getText();
+
         currentRollMethod.setText("Saving to file");
 
         saveToFile();
@@ -154,6 +156,8 @@ public class rollerController implements Initializable {
         statText4.setEditable(false);
         statText5.setEditable(false);
         statText6.setEditable(false);
+
+        currentRollMethod.setWrapText(true);
 
         defaultArray();
 
@@ -200,6 +204,35 @@ public class rollerController implements Initializable {
             e.printStackTrace();
         }
 
+        if(     //block checks for same values in selector 1 as the rest of the selections
+                statAssign1.getValue().equals(statAssign2.getValue()) ||
+                statAssign1.getValue().equals(statAssign3.getValue()) ||
+                statAssign1.getValue().equals(statAssign4.getValue()) ||
+                statAssign1.getValue().equals(statAssign5.getValue()) ||
+                statAssign1.getValue().equals(statAssign6.getValue()) ||
+
+                //block checks for the same value in selector 2 as the rest
+                statAssign2.getValue().equals(statAssign3.getValue()) ||
+                statAssign2.getValue().equals(statAssign4.getValue()) ||
+                statAssign2.getValue().equals(statAssign5.getValue()) ||
+                statAssign2.getValue().equals(statAssign6.getValue()) ||
+
+                        //block checks for the same values in selector 3 as the rest
+                        statAssign3.getValue().equals(statAssign4.getValue()) ||
+                        statAssign3.getValue().equals(statAssign5.getValue()) ||
+                        statAssign3.getValue().equals(statAssign6.getValue()) ||
+
+                            //block checks for the same values in selector 4 as the rest
+                            statAssign4.getValue().equals(statAssign5.getValue()) ||
+                            statAssign4.getValue().equals(statAssign6.getValue()) ||
+
+                                statAssign5.getValue().equals(statAssign6.getValue()))
+        {
+            currentRollMethod.setText("Error saving: Only one value can be assigned to one stat");
+
+
+        }else {
+
 
 
         String textOutput = "Start New Stat Block: \n" + statBlock1.toString() + "\nAssigned to: " + statAssign1.getValue() + "\n\n" +
@@ -211,6 +244,6 @@ public class rollerController implements Initializable {
 
         FileWriter outputWriter = new FileWriter("Stats Generated.txt", true);
         outputWriter.write(textOutput);
-        outputWriter.close();
+        outputWriter.close();}
     }
 }
