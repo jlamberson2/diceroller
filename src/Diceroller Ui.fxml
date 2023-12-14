@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rollerController">
+<Pane fx:id="primaryStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rollerController">
    <children>
       <TextArea id="statText1" fx:id="statText1" layoutX="39.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0">
          <font>
@@ -49,7 +49,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="currentRollMethod" layoutX="673.0" layoutY="218.0" prefHeight="178.0" prefWidth="264.0" text="Standard Array">
+      <Label fx:id="currentRollMethod" layoutX="673.0" layoutY="218.0" prefHeight="40.0" prefWidth="264.0" text="Standard Array">
          <font>
             <Font size="24.0" />
          </font>

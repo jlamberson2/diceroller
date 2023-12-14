@@ -76,3 +76,55 @@ Total: 8
 Assigned to: Charisma
 
 
+Start New Stat Block: 
+Rolls: [5, 5, 5, 1]
+Total: 15
+Assigned to: Strength
+
+Rolls: [5, 5, 4, 1]
+Total: 14
+Assigned to: Dexterity
+
+Rolls: [5, 5, 3, 1]
+Total: 13
+Assigned to: Constitution
+
+Rolls: [5, 5, 2, 1]
+Total: 12
+Assigned to: Intelligence
+
+Rolls: [5, 3, 2, 1]
+Total: 10
+Assigned to: Wisdom
+
+Rolls: [5, 2, 1, 1]
+Total: 8
+Assigned to: Charisma
+
+
+Start New Stat Block: 
+Rolls: [5, 5, 5, 1]
+Total: 15
+Assigned to: Strength
+
+Rolls: [5, 5, 4, 1]
+Total: 14
+Assigned to: Dexterity
+
+Rolls: [5, 5, 3, 1]
+Total: 13
+Assigned to: Constitution
+
+Rolls: [5, 5, 2, 1]
+Total: 12
+Assigned to: Intelligence
+
+Rolls: [5, 3, 2, 1]
+Total: 10
+Assigned to: Wisdom
+
+Rolls: [5, 2, 1, 1]
+Total: 8
+Assigned to: Charisma
+
+

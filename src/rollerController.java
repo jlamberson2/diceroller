@@ -1,14 +1,16 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.*;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.*;
+import javafx.scene.layout.*;
+import javafx.stage.*;
+
 import java.io.*;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.concurrent.*;
 
 public class rollerController implements Initializable {
 
@@ -22,6 +24,8 @@ public class rollerController implements Initializable {
 
     private String[] statChoices = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma", "Unselected"};
     private String[] classChoices = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rouge", "Sorcerer", "Warlock", "Wizard", "Artificer", "Unassigned"};
+
+
 
     //Standard assignment for all the FXML objects
     @FXML
@@ -85,6 +89,10 @@ public class rollerController implements Initializable {
     private TextArea statText6;
 
 
+    @FXML
+    private Pane primaryStage;
+
+
     //Action for the standard array button
     @FXML
     void defaultGeneration(ActionEvent event) {
@@ -142,7 +150,7 @@ public class rollerController implements Initializable {
 
     //action for the export stats to file button
     @FXML
-    void saveToFile(ActionEvent event) throws IOException {
+    void saveToFile(ActionEvent event) throws IOException, InterruptedException {
         //String temp = currentRollMethod.getText();
 
         currentRollMethod.setText("Saving to file");
@@ -169,7 +177,6 @@ public class rollerController implements Initializable {
         statText5.setEditable(false);
         statText6.setEditable(false);
 
-        currentRollMethod.setWrapText(true);
 
         defaultArray();
 
@@ -201,7 +208,7 @@ public class rollerController implements Initializable {
         statText6.setText(statBlock6.toString());
     }
 
-    private void saveToFile() throws IOException {
+    private void saveToFile() throws IOException, InterruptedException {
         try {
             File statsFile = new File("Stats Generated.txt");
             if(statsFile.createNewFile()){
@@ -243,9 +250,18 @@ public class rollerController implements Initializable {
 
                                 statAssign5.getValue().equals(statAssign6.getValue()))
         {
-            currentRollMethod.setText("Error saving: Only one value can be assigned to one stat/one stat is unassigned");
 
+            //Used to pop up an alert window to the user explaining why the save was not made
+            Stage stage = (Stage) primaryStage.getScene().getWindow();
+            AlertType type = AlertType.WARNING;
+            Alert alert = new Alert(type, "");
 
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.initOwner(stage);
+
+            alert.getDialogPane().setHeaderText("Error saving: Only one value can be assigned to one stat or one stat is unassigned");
+
+            alert.showAndWait();
         }else {
 
 
@@ -259,7 +275,19 @@ public class rollerController implements Initializable {
 
         FileWriter outputWriter = new FileWriter("Stats Generated.txt", true);
         outputWriter.write(textOutput);
-        outputWriter.close();}
+        outputWriter.close();
+
+            Stage stage = (Stage) primaryStage.getScene().getWindow();
+            AlertType type = AlertType.INFORMATION;
+            Alert alert = new Alert(type, "");
+
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.initOwner(stage);
+
+            alert.getDialogPane().setHeaderText("Save Complete");
+
+            alert.showAndWait();
+        }
     }
 
     //action for the "Update Stats" button
@@ -372,6 +400,7 @@ public class rollerController implements Initializable {
         }
     }
 
+    //Used to reset the stat selectors that were not used by recommendations to Unassigned
     private void rearrange(int assign1, int assign2){
         if(assign1 != 0 && assign2 != 0){
             statAssign1.setValue("Unassigned");
@@ -396,4 +425,6 @@ public class rollerController implements Initializable {
         statAssign5.setValue("Unselected");
         statAssign6.setValue("Unselected");
     }
+
+
 }
