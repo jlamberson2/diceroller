@@ -17,15 +17,25 @@ public class roller {
     //Generates the stat block but rerolls the 1s once only
     public ArrayList generateStatBlockR1(){
         ArrayList<Integer> statBlock = generateStatBlock();
+        ArrayList<Integer> newStatBlock = new ArrayList<>();
+
+        int counter = 0;
 
         for(int i = 0; i < statBlock.size(); i++){
-            if(statBlock.get(i)==1){
-                statBlock.remove(i);
-                statBlock.add(0, numGen.nextInt(6)+1);
+            if(statBlock.get(i) == 1){
+                counter++;
+            } else {
+                newStatBlock.add(statBlock.get(i));
             }
         }
 
-        return statBlock;
+        while(counter != 0){
+            newStatBlock.add(numGen.nextInt(6)+1);
+            counter--;
+        }
+
+
+        return newStatBlock;
     }
 
 

@@ -16,6 +16,8 @@ public class main extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("Diceroller Ui.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
+            primaryStage.setTitle("Endangered Dungeons Stat Generator v1.3");
+            primaryStage.setResizable(false);
             primaryStage.show();
         } catch (Exception e){
             e.printStackTrace();

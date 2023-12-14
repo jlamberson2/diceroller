@@ -178,6 +178,7 @@ public class rollerController implements Initializable {
         statText6.setEditable(false);
 
 
+
         defaultArray();
 
         rearrange();
