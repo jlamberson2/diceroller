@@ -18,7 +18,8 @@ public class rollerController implements Initializable {
     stat statBlock5;
     stat statBlock6;
 
-    private String[] statChoices = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"};
+    private String[] statChoices = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma", "Unselected"};
+    private String[] classChoices = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rouge", "Sorcerer", "Warlock", "Wizard", "Artificer"};
 
     //Standard assignment for all the FXML objects
     @FXML
@@ -38,6 +39,12 @@ public class rollerController implements Initializable {
 
     @FXML
     private Button standardRoll;
+
+    @FXML
+    private Button statUpdate;
+
+    @FXML
+    private ChoiceBox<String> classSelection;
 
     @FXML
     private ChoiceBox<String> statAssign1;
@@ -161,12 +168,12 @@ public class rollerController implements Initializable {
 
         defaultArray();
 
-        statAssign1.setValue("Strength");
-        statAssign2.setValue("Dexterity");
-        statAssign3.setValue("Constitution");
-        statAssign4.setValue("Intelligence");
-        statAssign5.setValue("Wisdom");
-        statAssign6.setValue("Charisma");
+        statAssign1.setValue("Unselected");
+        statAssign2.setValue("Unselected");
+        statAssign3.setValue("Unselected");
+        statAssign4.setValue("Unselected");
+        statAssign5.setValue("Unselected");
+        statAssign6.setValue("Unselected");
 
         refreshStatText();
 
@@ -204,7 +211,15 @@ public class rollerController implements Initializable {
             e.printStackTrace();
         }
 
-        if(     //block checks for same values in selector 1 as the rest of the selections
+        if(
+                statAssign1.getValue().equals("Unselected") ||
+                statAssign2.getValue().equals("Unselected") ||
+                statAssign3.getValue().equals("Unselected") ||
+                statAssign4.getValue().equals("Unselected") ||
+                statAssign5.getValue().equals("Unselected") ||
+                statAssign6.getValue().equals("Unselected") ||
+
+                //block checks for same values in selector 1 as the rest of the selections
                 statAssign1.getValue().equals(statAssign2.getValue()) ||
                 statAssign1.getValue().equals(statAssign3.getValue()) ||
                 statAssign1.getValue().equals(statAssign4.getValue()) ||
@@ -228,7 +243,7 @@ public class rollerController implements Initializable {
 
                                 statAssign5.getValue().equals(statAssign6.getValue()))
         {
-            currentRollMethod.setText("Error saving: Only one value can be assigned to one stat");
+            currentRollMethod.setText("Error saving: Only one value can be assigned to one stat/one stat is unassigned");
 
 
         }else {
@@ -245,5 +260,11 @@ public class rollerController implements Initializable {
         FileWriter outputWriter = new FileWriter("Stats Generated.txt", true);
         outputWriter.write(textOutput);
         outputWriter.close();}
+    }
+
+    //action for the "Update Stats" button
+    @FXML
+    void statSelectionUpdate(ActionEvent event) {
+
     }
 }

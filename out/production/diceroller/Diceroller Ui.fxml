@@ -44,15 +44,22 @@
       <ChoiceBox id="statAssign5" fx:id="statAssign5" layoutX="331.0" layoutY="481.0" prefHeight="25.0" prefWidth="200.0" />
       <ChoiceBox id="statAssign6" fx:id="statAssign6" layoutX="635.0" layoutY="481.0" prefHeight="25.0" prefWidth="200.0" />
       <Button id="exportToFile" fx:id="exportToFile" layoutX="891.0" layoutY="157.0" mnemonicParsing="false" onAction="#saveToFile" prefHeight="25.0" prefWidth="218.0" text="Export Stats to File" />
-      <Label layoutX="891.0" layoutY="236.0" prefHeight="40.0" prefWidth="264.0" text="Current Roll Method:">
+      <Label layoutX="891.0" layoutY="212.0" prefHeight="40.0" prefWidth="264.0" text="Current Roll Method:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="currentRollMethod" layoutX="891.0" layoutY="281.0" prefHeight="162.0" prefWidth="264.0" text="Standard Array">
+      <Label fx:id="currentRollMethod" layoutX="891.0" layoutY="252.0" prefHeight="148.0" prefWidth="264.0" text="Standard Array">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <ChoiceBox fx:id="classSelection" layoutX="983.0" layoutY="440.0" prefHeight="25.0" prefWidth="218.0" />
+      <Label layoutX="986.0" layoutY="411.0" text="Select Class to Recomend stats to">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="statUpdate" layoutX="983.0" layoutY="469.0" mnemonicParsing="false" onAction="#statSelectionUpdate" prefHeight="25.0" prefWidth="218.0" text="Update Stats" />
    </children>
 </Pane>
