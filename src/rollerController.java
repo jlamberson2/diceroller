@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import java.io.*;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class rollerController implements Initializable {
@@ -19,7 +21,7 @@ public class rollerController implements Initializable {
     stat statBlock6;
 
     private String[] statChoices = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma", "Unselected"};
-    private String[] classChoices = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rouge", "Sorcerer", "Warlock", "Wizard", "Artificer"};
+    private String[] classChoices = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rouge", "Sorcerer", "Warlock", "Wizard", "Artificer", "Unassigned"};
 
     //Standard assignment for all the FXML objects
     @FXML
@@ -157,6 +159,9 @@ public class rollerController implements Initializable {
         statAssign5.getItems().addAll(statChoices);
         statAssign6.getItems().addAll(statChoices);
 
+        classSelection.getItems().addAll(classChoices);
+        classSelection.setValue("Unassigned");
+
         statText1.setEditable(false);
         statText2.setEditable(false);
         statText3.setEditable(false);
@@ -168,12 +173,7 @@ public class rollerController implements Initializable {
 
         defaultArray();
 
-        statAssign1.setValue("Unselected");
-        statAssign2.setValue("Unselected");
-        statAssign3.setValue("Unselected");
-        statAssign4.setValue("Unselected");
-        statAssign5.setValue("Unselected");
-        statAssign6.setValue("Unselected");
+        rearrange();
 
         refreshStatText();
 
@@ -265,6 +265,135 @@ public class rollerController implements Initializable {
     //action for the "Update Stats" button
     @FXML
     void statSelectionUpdate(ActionEvent event) {
+        ArrayList<Integer> statTotals = new ArrayList<>();
+        statTotals.add(statBlock1.totalStat());
+        statTotals.add(statBlock2.totalStat());
+        statTotals.add(statBlock3.totalStat());
+        statTotals.add(statBlock4.totalStat());
+        statTotals.add(statBlock5.totalStat());
+        statTotals.add(statBlock6.totalStat());
 
+        int max = Collections.max(statTotals); int maxLoc = statTotals.indexOf(max);
+        int maxMin; int maxMinLoc;
+
+        if(maxLoc == 0){
+            maxMin = statTotals.get(1);
+            maxMinLoc = 1;
+        } else {
+            maxMin = statTotals.get(0);
+            maxMinLoc = 0;
+        }
+
+        for(int i = 0; i < statTotals.size(); i++){
+
+            if(i != maxLoc && maxMin < statTotals.get(i)){
+                maxMin = statTotals.get(i);
+                maxMinLoc = i;
+            }
+
+        }
+
+        switch (classSelection.getValue()){
+            case "Barbarian":
+                reassign(maxLoc, "Strength");
+                reassign(maxMinLoc, "Constitution");
+                break;
+            case "Bard":
+                reassign(maxLoc, "Charisma");
+                reassign(maxMinLoc, "Dexterity");
+                break;
+            case "Cleric":
+                reassign(maxLoc, "Wisdom");
+                reassign(maxMinLoc, "Strength");
+                break;
+            case "Druid":
+                reassign(maxLoc, "Wisdom");
+                reassign(maxMinLoc, "Constitution");
+                break;
+            case "Fighter":
+                reassign(maxLoc, "Dexterity");
+                reassign(maxMinLoc, "Constitution");
+                break;
+            case "Monk":
+            case "Ranger":
+                reassign(maxLoc, "Dexterity");
+                reassign(maxMinLoc, "Wisdom");
+                break;
+            case "Paladin":
+                reassign(maxLoc, "Strength");
+                reassign(maxMinLoc, "Charisma");
+                break;
+            case "Rogue":
+                reassign(maxLoc, "Dexterity");
+                reassign(maxMinLoc, "Charisma");
+                break;
+            case "Sorcerer":
+            case "Warlock":
+                reassign(maxLoc, "Charisma");
+                reassign(maxMinLoc, "Constitution");
+                break;
+            case "Wizard":
+                reassign(maxLoc, "Intelligence");
+                reassign(maxMinLoc, "Dexterity");
+                break;
+            case "Artificer":
+                reassign(maxLoc, "Intelligence");
+                reassign(maxMinLoc, "Constitution");
+                break;
+            case "Unassigned":
+                rearrange();
+                break;
+        }
+
+        rearrange(maxLoc, maxMinLoc);
+
+    }
+
+    private void reassign(int location, String stat){
+        switch(location){
+            case 0:
+                statAssign1.setValue(stat);
+                break;
+            case 1:
+                statAssign2.setValue(stat);
+                break;
+            case 2:
+                statAssign3.setValue(stat);
+                break;
+            case 3:
+                statAssign4.setValue(stat);
+                break;
+            case 4:
+                statAssign5.setValue(stat);
+                break;
+            case 5:
+                statAssign6.setValue(stat);
+                break;
+        }
+    }
+
+    private void rearrange(int assign1, int assign2){
+        if(assign1 != 0 && assign2 != 0){
+            statAssign1.setValue("Unassigned");
+        } else if(assign1 != 1 && assign2 != 1){
+            statAssign2.setValue("Unassigned");
+        } else if(assign1 != 2 && assign2 != 2){
+            statAssign3.setValue("Unassigned");
+        } else if(assign1 != 3 && assign2 != 3){
+            statAssign4.setValue("Unassigned");
+        } else if(assign1 != 4 && assign2 != 4){
+            statAssign5.setValue("Unassigned");
+        } else if(assign1 != 5 && assign2 != 5){
+            statAssign6.setValue("Unassigned");
+        }
+    }
+
+    private void rearrange(){
+        statAssign1.setValue("Unselected");
+        statAssign2.setValue("Unselected");
+        statAssign3.setValue("Unselected");
+        statAssign4.setValue("Unselected");
+        statAssign5.setValue("Unselected");
+        statAssign6.setValue("Unselected");
     }
 }
