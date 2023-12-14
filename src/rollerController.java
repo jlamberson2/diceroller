@@ -369,12 +369,29 @@ public class rollerController implements Initializable {
                 reassign(maxMinLoc, "Constitution");
                 break;
             case "Unassigned":
-                rearrange();
+                unassignedAlert();
                 break;
         }
 
         rearrange(maxLoc, maxMinLoc);
 
+    }
+
+    private void unassignedAlert(){
+        Stage stage = (Stage) primaryStage.getScene().getWindow();
+        AlertType type = AlertType.CONFIRMATION;
+        Alert alert = new Alert(type, "");
+
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initOwner(stage);
+
+        alert.getDialogPane().setHeaderText("Warning, class not selected. Reset to default?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if(result.get() == ButtonType.OK){
+            rearrange();
+        }
     }
 
     private void reassign(int location, String stat){
