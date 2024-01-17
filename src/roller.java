@@ -71,6 +71,8 @@ public class roller {
         return statBlock;
     }
 
+    //TOADD a method for guaranteeing an 18 for at minimum, 1 stat block
+
 
 
 }
