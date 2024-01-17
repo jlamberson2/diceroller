@@ -148,6 +148,18 @@ public class rollerController implements Initializable {
         refreshStatText();
     }
 
+    //method for a future button that guarantees at least 1, 18 stat block
+    void guarantee18(){
+        statBlock1 = new stat(6,6,6,1);
+        statBlock2 = new stat(statRoller.generateStatBlock());
+        statBlock3 = new stat(statRoller.generateStatBlock());
+        statBlock4 = new stat(statRoller.generateStatBlock());
+        statBlock5 = new stat(statRoller.generateStatBlock());
+        statBlock6 = new stat(statRoller.generateStatBlock());
+
+        refreshStatText();
+    }
+
     //action for the export stats to file button
     @FXML
     void saveToFile(ActionEvent event) throws IOException, InterruptedException {
@@ -443,6 +455,5 @@ public class rollerController implements Initializable {
         statAssign5.setValue("Unselected");
         statAssign6.setValue("Unselected");
     }
-
 
 }
