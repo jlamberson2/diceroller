@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="primaryStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rollerController">
+<Pane fx:id="primaryStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rollerController">
    <children>
       <TextArea id="statText1" fx:id="statText1" layoutX="39.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0">
          <font>
@@ -33,10 +33,7 @@
          <font>
             <Font size="24.0" />
          </font></TextArea>
-      <Button id="standardRoll" fx:id="standardRoll" layoutX="673.0" layoutY="35.0" mnemonicParsing="false" onAction="#rollStandardStats" prefHeight="25.0" prefWidth="218.0" text="Standard Roll (4D6)" />
-      <Button id="reroll1s" fx:id="reroll1s" layoutX="673.0" layoutY="60.0" mnemonicParsing="false" onAction="#rollStatsRe1s" prefHeight="25.0" prefWidth="218.0" text="Reroll 1s" />
-      <Button id="rerollLow2" fx:id="rerollLow2" layoutX="673.0" layoutY="85.0" mnemonicParsing="false" onAction="#rollRerollLow2" prefHeight="25.0" prefWidth="218.0" text="Reroll Lowest 2" />
-      <Button id="standardArray" fx:id="standardArray" layoutX="673.0" layoutY="110.0" mnemonicParsing="false" onAction="#defaultGeneration" prefHeight="25.0" prefWidth="218.0" text="Standard Array" />
+      <Button id="standardArray" fx:id="statRoll" layoutX="673.0" layoutY="97.0" mnemonicParsing="false" onAction="#rollSelection" prefHeight="25.0" prefWidth="218.0" text="Roll for Stats" />
       <ChoiceBox id="statAssign1" fx:id="statAssign1" layoutX="39.0" layoutY="232.0" prefHeight="25.0" prefWidth="200.0" />
       <ChoiceBox id="statAssign2" fx:id="statAssign2" layoutX="246.0" layoutY="232.0" prefHeight="25.0" prefWidth="200.0" />
       <ChoiceBox id="statAssign3" fx:id="statAssign3" layoutX="452.0" layoutY="232.0" prefHeight="25.0" prefWidth="200.0" />
@@ -54,12 +51,18 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="classSelection" layoutX="983.0" layoutY="440.0" prefHeight="25.0" prefWidth="218.0" />
-      <Label layoutX="986.0" layoutY="411.0" text="Select Class to Recomend stats to">
+      <ChoiceBox fx:id="classSelection" layoutX="661.0" layoutY="440.0" prefHeight="25.0" prefWidth="218.0" />
+      <Label layoutX="666.0" layoutY="420.0" text="Select Class to Recomend stats to">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="statUpdate" layoutX="983.0" layoutY="469.0" mnemonicParsing="false" onAction="#statSelectionUpdate" prefHeight="25.0" prefWidth="218.0" text="Update Stats" />
+      <Button fx:id="statUpdate" layoutX="661.0" layoutY="468.0" mnemonicParsing="false" onAction="#statSelectionUpdate" prefHeight="25.0" prefWidth="218.0" text="Update Stats" />
+      <ChoiceBox id="statAssign3" fx:id="rollMethodSelector" layoutX="673.0" layoutY="58.0" prefHeight="25.0" prefWidth="218.0" />
+      <Label layoutX="672.0" layoutY="20.0" text="Select method to Roll:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

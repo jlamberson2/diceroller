@@ -24,7 +24,7 @@ public class rollerController implements Initializable {
 
     private String[] statChoices = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma", "Unselected"};
     private String[] classChoices = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rouge", "Sorcerer", "Warlock", "Wizard", "Artificer", "Unassigned"};
-
+    private String[] rollChoices = {"Standard Array", "Roll 4D6", "Reroll 1s", "Reroll Lowest 2", "Guarantee One 18"};
 
 
     //Standard assignment for all the FXML objects
@@ -34,6 +34,8 @@ public class rollerController implements Initializable {
     @FXML
     private Button exportToFile;
 
+    /*
+    //Depreciated code that is no longer used, replaced with the rollMethodSelector ChoiceBox and the statRoll button
     @FXML
     private Button reroll1s;
 
@@ -47,7 +49,10 @@ public class rollerController implements Initializable {
     private Button standardRoll;
 
     @FXML
-    private Button statUpdate;
+    private Button statUpdate;*/
+
+    @FXML
+    private Button statRoll;
 
     @FXML
     private ChoiceBox<String> classSelection;
@@ -69,6 +74,9 @@ public class rollerController implements Initializable {
 
     @FXML
     private ChoiceBox<String> statAssign6;
+
+    @FXML
+    private ChoiceBox<String> rollMethodSelector;
 
     @FXML
     private TextArea statText1;
@@ -93,17 +101,15 @@ public class rollerController implements Initializable {
     private Pane primaryStage;
 
 
-    //Action for the standard array button
-    @FXML
-    void defaultGeneration(ActionEvent event) {
+    //Action for the standard array generation
+    private void defaultGeneration() {
         currentRollMethod.setText("Standard Array");
         defaultArray();
         refreshStatText();
     }
 
-    //action for the reroll lowest 2 button
-    @FXML
-    void rollRerollLow2(ActionEvent event) {
+    //action for the reroll lowest 2 selection
+    private void rollRerollLow2() {
         currentRollMethod.setText("Reroll Lowest 2");
 
         statBlock1 = new stat(statRoller.generateStatBlockRLow2());
@@ -117,9 +123,8 @@ public class rollerController implements Initializable {
 
     }
 
-    //action for the standard roll (4D6) button
-    @FXML
-    void rollStandardStats(ActionEvent event) {
+    //action for the standard roll (4D6) selection
+    private void rollStandardStats() {
         currentRollMethod.setText("Standard 4D6 Roll");
 
         statBlock1 = new stat(statRoller.generateStatBlock());
@@ -133,9 +138,8 @@ public class rollerController implements Initializable {
 
     }
 
-    //action for the reroll 1s button
-    @FXML
-    void rollStatsRe1s(ActionEvent event) {
+    //action for the reroll 1s selection
+    private void rollStatsRe1s() {
         currentRollMethod.setText("Reroll 1s");
 
         statBlock1 = new stat(statRoller.generateStatBlockR1());
@@ -163,9 +167,9 @@ public class rollerController implements Initializable {
     //action for the export stats to file button
     @FXML
     void saveToFile(ActionEvent event) throws IOException, InterruptedException {
-        //String temp = currentRollMethod.getText();
+        /*String temp = currentRollMethod.getText();
 
-        currentRollMethod.setText("Saving to file");
+        //currentRollMethod.setText("Saving to file");*/
 
         saveToFile();
     }
@@ -178,6 +182,9 @@ public class rollerController implements Initializable {
         statAssign4.getItems().addAll(statChoices);
         statAssign5.getItems().addAll(statChoices);
         statAssign6.getItems().addAll(statChoices);
+
+        rollMethodSelector.getItems().addAll(rollChoices);
+        rollMethodSelector.setValue("Standard Array");
 
         classSelection.getItems().addAll(classChoices);
         classSelection.setValue("Unassigned");
@@ -221,7 +228,7 @@ public class rollerController implements Initializable {
         statText6.setText(statBlock6.toString());
     }
 
-    private void saveToFile() throws IOException, InterruptedException {
+    private void saveToFile() throws IOException, InterruptedException {//TODO: make it so each save is a new file
         try {
             File statsFile = new File("Stats Generated.txt");
             if(statsFile.createNewFile()){
@@ -455,5 +462,31 @@ public class rollerController implements Initializable {
         statAssign5.setValue("Unselected");
         statAssign6.setValue("Unselected");
     }
+
+    //Used alongside the choice a user selects for rolling to then generate the stats with a switch case
+    @FXML
+    void rollSelection(ActionEvent event){
+        String selection = rollMethodSelector.getValue();
+
+        switch(selection){
+            case "Roll 4D6":
+                rollStandardStats();
+                break;
+            case "Reroll 1s":
+                rollStatsRe1s();
+                break;
+            case "Reroll Lowest 2":
+                rollRerollLow2();
+                break;
+            case "Guarantee One 18":
+                guarantee18();
+                break;
+            default:
+                defaultArray();
+                break;
+        }
+        refreshStatText();
+    }
+    //private String[] rollChoices = {"Standard Array", "Roll 4D6", "Reroll 1s", "Reroll Lowest 2"};
 
 }
