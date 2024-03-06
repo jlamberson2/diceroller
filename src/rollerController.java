@@ -24,7 +24,7 @@ public class rollerController implements Initializable {
 
     private String[] statChoices = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma", "Unselected"};
     private String[] classChoices = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rouge", "Sorcerer", "Warlock", "Wizard", "Artificer", "Unassigned"};
-    private String[] rollChoices = {"Standard Array", "Roll 4D6", "Reroll 1s", "Reroll Lowest 2", "Guarantee One 18"};
+    private String[] rollChoices = {"Standard Array", "Roll 4D6", "Reroll 1s", "Reroll Lowest 2", "Guarantee One 18",/*"20 - 2D6"*/};
 
 
     //Standard assignment for all the FXML objects
@@ -205,6 +205,18 @@ public class rollerController implements Initializable {
         refreshStatText();
 
 
+    }
+
+    //method for 20 - 2d6 stat rolling
+    //NOTE: does not work as intended
+    //TODO: fix method to work with stat class
+    private void twentySub2D6(){
+        statBlock1 = new stat(statRoller.generateBlock20Sub2D6());
+        statBlock2 = new stat(statRoller.generateBlock20Sub2D6());
+        statBlock3 = new stat(statRoller.generateBlock20Sub2D6());
+        statBlock4 = new stat(statRoller.generateBlock20Sub2D6());
+        statBlock5 = new stat(statRoller.generateBlock20Sub2D6());
+        statBlock6 = new stat(statRoller.generateBlock20Sub2D6());
     }
 
     //used to set the stat blocks to the standard array for stats
@@ -481,6 +493,9 @@ public class rollerController implements Initializable {
             case "Guarantee One 18":
                 guarantee18();
                 break;
+            /*case "20 - 2D6":
+                twentySub2D6();
+                break;*/
             default:
                 defaultArray();
                 break;

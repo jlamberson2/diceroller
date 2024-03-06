@@ -71,6 +71,16 @@ public class roller {
         return statBlock;
     }
 
+    public ArrayList generateBlock20Sub2D6(){
+        ArrayList<Integer> statBlock = new ArrayList();
+        for(int i = 0; i < 4; i++){
+
+        }
+
+        return statBlock;
+
+    }
+
 
 
 }
