@@ -1,7 +1,10 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
-import javafx.stage.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.image.Image;
+
 
 public class main extends Application {
     //Class is specifically used during testing to verify both the roller class and the stat class work as intended
@@ -22,5 +25,8 @@ public class main extends Application {
         } catch (Exception e){
             e.printStackTrace();
         }
+
+        Image logo = new Image("Logo.png");
+        primaryStage.getIcons().add(logo);
     }
 }

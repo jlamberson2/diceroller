@@ -383,7 +383,7 @@ public class rollerController implements Initializable {
                 reassign(maxLoc, "Strength");
                 reassign(maxMinLoc, "Charisma");
                 break;
-            case "Rogue":
+            case "Rouge":
                 reassign(maxLoc, "Dexterity");
                 reassign(maxMinLoc, "Charisma");
                 break;
