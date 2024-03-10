@@ -46,9 +46,9 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="currentRollMethod" layoutX="673.0" layoutY="218.0" prefHeight="40.0" prefWidth="264.0" text="Standard Array">
+      <Label fx:id="currentRollMethod" alignment="TOP_LEFT" layoutX="673.0" layoutY="218.0" prefHeight="200.0" prefWidth="264.0" text="Standard Array" wrapText="true">
          <font>
-            <Font size="24.0" />
+            <Font size="18.0" />
          </font>
       </Label>
       <ChoiceBox fx:id="classSelection" layoutX="661.0" layoutY="440.0" prefHeight="25.0" prefWidth="218.0" />

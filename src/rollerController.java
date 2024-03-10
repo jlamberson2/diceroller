@@ -6,6 +6,8 @@ import javafx.scene.control.Alert.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.io.*;
 
 import java.net.URL;
@@ -103,14 +105,14 @@ public class rollerController implements Initializable {
 
     //Action for the standard array generation
     private void defaultGeneration() {
-        currentRollMethod.setText("Standard Array");
+        //currentRollMethod.setText("Standard Array");
         defaultArray();
         refreshStatText();
     }
 
     //action for the reroll lowest 2 selection
     private void rollRerollLow2() {
-        currentRollMethod.setText("Reroll Lowest 2");
+        //currentRollMethod.setText("Reroll Lowest 2");
 
         statBlock1 = new stat(statRoller.generateStatBlockRLow2());
         statBlock2 = new stat(statRoller.generateStatBlockRLow2());
@@ -125,7 +127,7 @@ public class rollerController implements Initializable {
 
     //action for the standard roll (4D6) selection
     private void rollStandardStats() {
-        currentRollMethod.setText("Standard 4D6 Roll");
+        //currentRollMethod.setText("Standard 4D6 Roll");
 
         statBlock1 = new stat(statRoller.generateStatBlock());
         statBlock2 = new stat(statRoller.generateStatBlock());
@@ -140,7 +142,7 @@ public class rollerController implements Initializable {
 
     //action for the reroll 1s selection
     private void rollStatsRe1s() {
-        currentRollMethod.setText("Reroll 1s");
+        //currentRollMethod.setText("Reroll 1s");
 
         statBlock1 = new stat(statRoller.generateStatBlockR1());
         statBlock2 = new stat(statRoller.generateStatBlockR1());
@@ -204,6 +206,32 @@ public class rollerController implements Initializable {
 
         refreshStatText();
 
+        currentRollMethod.setText("Standard Array - This is provided by the Players Handbook. It gives the player an array of 15, 14, 13, 12, 10, 8 to assign to stats");
+
+        //Adds listener to the roll method selector to change the onscreen text to explain the rolling method
+        rollMethodSelector.setOnAction(event -> {
+            //System.out.println(rollMethodSelector.getValue());
+            switch(rollMethodSelector.getValue()){
+                case "Standard Array":
+                    currentRollMethod.setText("Standard Array - This is provided by the Players Handbook. It gives the player an array of 15, 14, 13, 12, 10, 8 to assign to stats");
+                    break;
+                case "Roll 4D6":
+                    currentRollMethod.setText("Roll 4D6 - This is the standard roll method. This rolls 4d6 and drops the lowest number");
+                    break;
+                case "Reroll 1s":
+                    currentRollMethod.setText("Reroll 1s - This is a variant of the standard 4d6 roll method. This method rolls 4d6 but, if a one pops up, it is rerolled and kept, regardless if it is a one again");
+                    break;
+                case "Reroll Lowest 2":
+                    currentRollMethod.setText("Reroll lowest 2 - This is a variant of the standard 4d6 roll method. This method rolls 4d6, but the lowest 2 number are rerolled and the highest of the two is kept");
+                    break;
+                case "Guarantee One 18":
+                    currentRollMethod.setText("Guarantee one 18 - This is a variant of the standard 4d6 roll method. This method sets one roll to be 18 guaranteed but, the rest of the stats are rolled normally");
+                    break;
+                default:
+                    currentRollMethod.setText("Error");
+                    break;
+            }
+        });
 
     }
 
