@@ -9,11 +9,6 @@ Stat blocks can be generated in a multitude of ways so this projects aim was to 
 As we both play DnD 5e alot, this was our attempt to steamline the process of selecting and rolling for stats as well as stated before
 to make this more accessable for people
 
-## Installation
-
-Make sure Java is installed onto the computer where you wish to use the program. Download the "diceroller.jar" file inside the 
-/diceroller/out/artifacts folder. Run the jar file and the program will launch
-
 ## Usage
 
 The application works by default, the standard array of stats for DnD are shown with all 6 assignment choices preselected.
@@ -27,6 +22,6 @@ if it already exists.
 
 ## Contact
 
-Justin Lamberson - jlamberson1@student.framingham.edu
+Justin Lamberson - justin.lamberson@endangereddungeonsllc.com
 
 Maxwell Whelan - mwhelan3@student.framingham.edu
